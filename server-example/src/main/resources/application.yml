@@ -1,0 +1,47 @@
+dubbo:
+  scan:
+    # dubbo 服务扫描基准包
+    base-packages: com.example
+  protocol:
+    # dubbo 协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: -1
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services:
+
+spring:
+  application:
+    # Dubbo 应用名称
+    name:  spring-cloud-alibaba-dubbo-server
+  main:
+    # Spring Boot 2.1 需要设定
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      # Nacos 服务发现与注册配置
+      discovery:
+        server-addr: 127.0.0.1:8848
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+        bindings:
+          erbadagang-output:
+            # RocketMQ Producer 配置项，对应 RocketMQProducerProperties 类
+            producer:
+              group: test # 生产者分组
+              sync: true # 是否同步发送消息，默认为 false 异步。
+      bindings:
+        erbadagang-output:
+          destination: ERBADAGANG-TOPIC-01 #目的地 这里使用RocketMQ Topic
+          content-type: application/json #内容格式 这里使用JSON
+
+        trek-output:
+          destination: TREK-TOPIC-01 # 目的地。这里使用 RocketMQ Topic
+          content-type: application/json # 内容格式。这里使用 JSON
+server:
+  port: 8890
