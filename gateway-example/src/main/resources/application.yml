@@ -1,0 +1,26 @@
+dubbo:
+  registry:
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services: spring-cloud-alibaba-dubbo-server
+server:
+  port: 7000
+spring:
+  application:
+    name: springcloud-alibaba-api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: server_route
+          uri: lb://spring-cloud-alibaba-dubbo-server
+          predicates:
+            - Path=/server/**
+          filters:
+            - StripPrefix=1

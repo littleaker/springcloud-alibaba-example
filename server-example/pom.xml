@@ -13,6 +13,11 @@
 
     <name>server-example</name>
     <dependencies>
+        <!-- 引入 SpringMVC 相关依赖，并实现对其的自动配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>server-api</artifactId>
