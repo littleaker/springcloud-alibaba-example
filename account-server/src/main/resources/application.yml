@@ -1,0 +1,43 @@
+dubbo:
+  scan:
+    base-packages: com.example
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services:
+
+spring:
+  application:
+    name: account-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    alibaba:
+      seata:
+        tx-service-group: account-service
+  datasource:
+    druid:
+      max-active: 20
+      min-idle: 2
+      initial-size: 2
+    name: storageDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.100.235:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+    username: root
+    password: root@DASCOM#190909
+
+seata:
+  enabled: true
+  service:
+    vgroup-mapping:
+      account-service: default
+    grouplist: 127.0.0.1:8091
+    disable-global-transaction: false
+
+server:
+  port: 18084

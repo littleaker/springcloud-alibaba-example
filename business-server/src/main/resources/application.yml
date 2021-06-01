@@ -1,0 +1,39 @@
+dubbo:
+  scan:
+    base-packages: com.example
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services: order-service,storage-service
+
+spring:
+  application:
+    name: business-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    alibaba:
+      seata:
+        tx-service-group: business-service
+
+seata:
+  enabled: true
+  service:
+    vgroup-mapping:
+      business-service: default
+    grouplist: 127.0.0.1:8091
+    disable-global-transaction: false
+
+server:
+  port: 18081
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000

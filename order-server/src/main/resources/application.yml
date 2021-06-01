@@ -1,0 +1,47 @@
+dubbo:
+  scan:
+    # dubbo 服务扫描基准包
+    base-packages: com.example
+  protocol:
+    # dubbo 协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: -1
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services: account-service
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    alibaba:
+      seata:
+        tx-service-group: business-service
+  datasource:
+    druid:
+      max-active: 20
+      min-idle: 2
+      initial-size: 2
+    name: orderDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.100.235:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+    username: root
+    password: root@DASCOM#190909
+
+seata:
+  enabled: true
+  service:
+    vgroup-mapping:
+      account-service: default
+    grouplist: 127.0.0.1:8091
+    disable-global-transaction: false
+
+server:
+  port: 18083

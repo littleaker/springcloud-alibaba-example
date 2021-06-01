@@ -7,6 +7,9 @@
         <module>server-example</module>
         <module>server-api</module>
         <module>consumer-example</module>
+        <module>account-server</module>
+        <module>order-server</module>
+        <module>storage-server</module>
     </modules>
 
     <groupId>com.example</groupId>
@@ -65,10 +68,7 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
