@@ -8,6 +8,7 @@ spring-boot-starter-parent:2.2.4.RELEASE
 
 .\startup.cmd -m standalone
 .\seata-server.bat 
+sh nacos-config.sh -h localhost -g SEATA_GROUP
 .\mqnamesrv.cmd
 
 
