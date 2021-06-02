@@ -1,5 +1,6 @@
 package com.example.businessserver;
 
+import com.example.AccountService;
 import com.example.OrderService;
 import com.example.StorageService;
 import io.seata.spring.annotation.GlobalTransactional;

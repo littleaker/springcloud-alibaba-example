@@ -16,9 +16,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-    alibaba:
-      seata:
-        tx-service-group: account-service
   datasource:
     druid:
       max-active: 20
@@ -27,17 +24,35 @@ spring:
     name: storageDataSource
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://ip:3306/seata?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://192.168.100.235:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
     username: root
-    password: password
+    password: root@DASCOM#190909
 
 seata:
   enabled: true
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      namespace: 1cdfd759-8161-4ac7-bd02-52bcb2618988
   service:
     vgroup-mapping:
-      account-service: default
-    grouplist: 127.0.0.1:8091
+      my_test_tx_group: default
     disable-global-transaction: false
-
+  client:
+    rm:
+      report-success-enable: false
 server:
   port: 18084
