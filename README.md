@@ -16,6 +16,8 @@ sh nacos-config.sh -h localhost -g SEATA_GROUP
 
 
 ### 参考文档
-> https://blog.csdn.net/qq853632587/article/details/111644295
+*  https://blog.csdn.net/qq853632587/article/details/111644295
+*  https://www.jianshu.com/p/7f8fd90564ca
 
-* seata配置文件放在seata-conf文件夹下
+
++ seata配置文件放在seata-conf文件夹下
